@@ -63,7 +63,7 @@ app.use("/", async (req, res) => {
   }
 });
 
-app.set("port", 5021);
+app.set("port", process.env.PORT || 5021);
 
 const server = app.listen(app.get("port"), () => {
   console.log("Express server listening on port " + server.address().port);
