@@ -15,7 +15,7 @@ const tokenCheck = (req, res, next) => {
     return res.status(401).send({ message: "No token provided" });
   }
   console.log(token);
-  const isValid = config.token === token;
+  const isValid = `Bearer ${config.token}` === token;
 
   if (!isValid) {
     return res.status(403).send({ message: "Invalid token" });
@@ -42,7 +42,7 @@ app.use("/", async (req, res) => {
       url,
       data,
       headers: {
-        Authorization: config.headerToken,
+        Authorization: `Bearer ${config.headerToken}`,
       },
       // Uncomment the following lines if you want to ignore SSL errors (not recommended for production)
       httpsAgent: new (require("https").Agent)({
